@@ -2469,6 +2469,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mappedin/mappedin-js@npm:^5.40.1":
+  version: 5.40.1
+  resolution: "@mappedin/mappedin-js@npm:5.40.1"
+  checksum: 4928c1cb0007710e151000394719af2b85bd6e57dfec82255619d48973f7f480aa4ce5e2d127cdce7e2ea863e2a85f90e8c46a04830edf1fa004b44dc0e41e73
+  languageName: node
+  linkType: hard
+
 "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1":
   version: 5.1.1-v1
   resolution: "@nicolo-ribaudo/eslint-scope-5-internals@npm:5.1.1-v1"
@@ -12439,6 +12446,7 @@ __metadata:
     "@capacitor/cli": ^6.1.2
     "@capacitor/core": ^6.1.2
     "@capacitor/ios": ^6.1.2
+    "@mappedin/mappedin-js": ^5.40.1
     "@testing-library/jest-dom": ^5.17.0
     "@testing-library/react": ^13.4.0
     "@testing-library/user-event": ^13.5.0

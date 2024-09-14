@@ -1,26 +1,24 @@
-import React from "react";
+import React, { useMemo } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { TGetVenueOptions, Mappedin, getVenue } from "@mappedin/mappedin-js";
+import useMapView from "./components/useMapView";
+import useVenue from "./components/useVenue";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React jdfkldjsf
-        </a>
-      </header>
-    </div>
+  const options = useMemo<TGetVenueOptions>(
+    () => ({
+      venue: "mappedin-demo-mall",
+      clientId: "5eab30aa91b055001a68e996",
+      clientSecret: "RJyRXKcryCMy4erZqqCbuB1NbR66QTGNXVE0x3Pg6oCIlUR1"
+    }),
+    []
   );
+
+  const venue = useVenue(options);
+  const { elementRef, mapView } = useMapView(venue);
+
+  return <div id="app" ref={elementRef} />;
 }
 
 export default App;
