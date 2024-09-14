@@ -5,6 +5,7 @@
   "dependencies": {
     "@capacitor/cli": "^6.1.2",
     "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
     "@mappedin/react-sdk": "beta",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
