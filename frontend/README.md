@@ -1,2 +1,1 @@
-
 `npx cap open ios`
