@@ -45,7 +45,6 @@ mdurl
 mmh3
 monotonic
 mpmath
-numpy
 oauthlib
 onnxruntime
 opentelemetry-api
