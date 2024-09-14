@@ -78,13 +78,14 @@
 
 import { MappedinLocation, TGetVenueOptions } from "@mappedin/mappedin-js";
 import "@mappedin/mappedin-js/lib/mappedin.css";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import useMapView from "./components/useMapView";
 import useSelectedLocation from "./components/useSelectedLocation";
 import useVenue from "./components/useVenue";
 import styled from "styled-components";
 import { CgProfile } from "react-icons/cg";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { GlobalContext } from "./GlobalContext";
 
 const Main = styled.div`
   height: 100vh;
@@ -145,17 +146,13 @@ export default function App() {
   const { selectedLocation, setSelectedLocation } =
     useSelectedLocation(mapView);
 
+  const { globalState, setGlobalState } = useContext(GlobalContext);
+
+
   return (
     <Main id="app">
       <div id="ui">
-        <div>{`Selected: ${selectedLocation?.name ?? "None"}`}</div>
-        <input
-          value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-          }}
-          placeholder="Search..."
-        />
+        <div>{`Selected: ${globalState ?? 0}`}</div>
       </div>
       <Map id="map-container" ref={elementRef}></Map>
 
