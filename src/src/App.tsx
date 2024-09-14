@@ -20,9 +20,9 @@ function App() {
   const { elementRef, mapView } = useMapView(venue);
 
   return (
-    <div id="app">
+    <div id="app" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <SignedIn>
-        <div ref={elementRef} />
+        <div ref={elementRef} style={{ width: "100%", height: "100%" }} />
       </SignedIn>
       <SignedOut>
         <SignIn />
