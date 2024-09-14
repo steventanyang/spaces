@@ -4,6 +4,7 @@ import "./App.css";
 import { TGetVenueOptions, Mappedin, getVenue } from "@mappedin/mappedin-js";
 import useMapView from "./components/useMapView";
 import useVenue from "./components/useVenue";
+import { SignIn, SignInButton, SignedIn, SignedOut } from "@clerk/clerk-react";
 
 function App() {
   const options = useMemo<TGetVenueOptions>(
@@ -18,7 +19,16 @@ function App() {
   const venue = useVenue(options);
   const { elementRef, mapView } = useMapView(venue);
 
-  return <div id="app" ref={elementRef} />;
+  return (
+    <div id="app">
+      <SignedIn>
+        <div ref={elementRef} />
+      </SignedIn>
+      <SignedOut>
+        <SignIn />
+      </SignedOut>
+    </div>
+  );
 }
 
 export default App;
