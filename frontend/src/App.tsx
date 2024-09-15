@@ -5,26 +5,35 @@ import { useEffect, useState } from "react";
 
 export const MappedinLigthYellow= "#bf4320";
 
-interface Images {
-  inner: {
-    ids?: string[];
-    embeddings?: number[];
-    metadatas?: {
-      x?: number;
-      y?: number;
-      floor?: number;
-    };
-    documents?: string[];
-    uris?: string[];
-    data?: any;
-    included?: string[];
-  };
+// interface Images {
+//   inner: {
+//     ids?: string[];
+//     embeddings?: number[];
+//     metadatas?: {
+//       x?: number;
+//       y?: number;
+//       floor?: number;
+//     };
+//     documents?: string[];
+//     uris?: string[];
+//     data?: any;
+//     included?: string[];
+//   };
+// }
+
+interface Person {
+  metadata: {
+    x: number;
+    y: number;
+    floor?: number;
+  }
+  id: string; //gcp url
 }
 
 
 function MyCustomComponent() {
   const { mapView, mapData } = useMap();
-  const [people, setPeople] = useState<Images[]>([]);
+  const [people, setPeople] = useState<Person[]>([]);
   const [occupancy, setOccupancy] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
@@ -37,9 +46,15 @@ function MyCustomComponent() {
             'Content-Type': 'application/json'
           },
         });
+        console.log(response)
         const data = await response.json();
         console.log(data)
-        setPeople(data);
+        let people: Person[] = data.ids.map((id: string, index: number) => ({
+          id,
+          metadata: data.metadatas[index],
+        }));
+        
+        setPeople(people);
       } catch (error) {
         console.error('Error fetching people data:', error);
       }
@@ -50,14 +65,18 @@ function MyCustomComponent() {
 
   useEffect(() => {
     // Calculate occupancy based on people's locations
+    console.log("people use effect", people)
     const newOccupancy: { [key: string]: number } = {};
+    console.log('Array.isArray(people)', Array.isArray(people))
     mapData.getByType("space").forEach((space) => {
       const spaceOccupancy = Array.isArray(people) ? people.filter(person => {
-        const metadata = person.inner as { metadatas?: { floor?: number } };
-        return metadata.metadatas && metadata.metadatas.floor === space.floor.id;
+        const metadata = person.metadata;
+        return metadata.floor === parseInt(space.floor.name.replace("Floor ", ""))
       }).length : 0;
+      console.log(space.name, spaceOccupancy)
       newOccupancy[space.name] = spaceOccupancy;
     });
+    console.log(mapData.getByType("space"))
     setOccupancy(newOccupancy);
   }, [people, mapData]);
 
@@ -65,7 +84,7 @@ function MyCustomComponent() {
     // Update map view with occupancy data
     mapData.getByType("space").forEach((space) => {
       mapView.updateState(space, {
-        color: occupancy[space.name] ? darken("FFFFC5", occupancy[space.name] || 0) : "#FFFFFF",
+        color: occupancy[space.name] ? darken("red", occupancy[space.name] || 0) : "#FFFFFF",
       });
     });
   }, [occupancy, mapView, mapData]);
