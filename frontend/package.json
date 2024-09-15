@@ -12,6 +12,7 @@
   "dependencies": {
     "@capacitor/core": "^6.1.2",
     "@mappedin/react-sdk": "beta",
+    "color2k": "^2.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
