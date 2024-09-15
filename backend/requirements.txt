@@ -97,3 +97,7 @@ websocket-client
 websockets
 wrapt
 zipp
+python-multipart
+fastapi
+uvicorn
+google-cloud-storage

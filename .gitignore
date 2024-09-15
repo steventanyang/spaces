@@ -7,3 +7,5 @@ env
 *.pyc
 backend/db
 backend/db/*
+__pycache__/*
+__pycache__

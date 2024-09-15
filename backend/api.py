@@ -13,9 +13,11 @@ gcp_handler = GCPHandler()
 chroma_handler = ChromaHandler()
 
 # Google Cloud Storage bucket name
-BUCKET_NAME = 'your-gcp-bucket-name'
+BUCKET_NAME = 'ourbucket'
 
 # Initialize the GCP storage client
+import os
+os.environ["GCLOUD_PROJECT"] = "spaceshtn"
 storage_client = storage.Client()
 
 def upload_to_gcs(file: UploadFile, blob_name: str) -> str:
