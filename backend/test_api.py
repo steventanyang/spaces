@@ -1,8 +1,8 @@
 import requests
 
 # Define the API endpoint
-url = "http://localhost:8000/upload_video/"  # Replace with the actual URL if deployed on a server
-url2 = "http://localhost:8000/search_from_query/"
+url = "http://localhost:8000/search_from_query/"  # Replace with the actual URL if deployed on a server
+url2 = "http://localhost:8000/upload_images/"
 # Open the video file you want to upload
 video_file_path = "vid.mp4"  # Replace with your actual video file path
 
@@ -12,24 +12,23 @@ x = 40.7128
 y = 74.0060
 floor = 2
 # Prepare the files and data to be sent in the request
-with open(video_file_path, "rb") as video_file:
-    # Create the payload
-    files = {
-        "file": (video_file_path, video_file, "video/mp4"),  # Adjust MIME type if the video is not mp4
-    }
-    data = {
-        "query_input": "earth",
-        "x": x,
-        "y": y,
-        "floor": floor,
-    }
 
-    # Send the POST request
-    response = requests.post(url2, params=data)
-    print("Request Method:", response.request.method)
-    print("Request URL:", response.request.url)
-    print("Request Headers:", response.request.headers)
-    print("Request Body:", response.request.body)
+# files = {
+#     "file": (video_file_path, video_file, "video/mp4"),  # Adjust MIME type if the video is not mp4
+# }
+data = {
+    "query_input": "earth",
+    "x": x,
+    "y": y,
+    "floor": floor,
+}
 
-    # Check the response
-    print(response.json())
+# Send the POST request
+response = requests.post(url, params=data)#, params=data)
+print("Request Method:", response.request.method)
+print("Request URL:", response.request.url)
+print("Request Headers:", response.request.headers)
+print("Request Body:", response.request.body)
+
+# Check the response
+print(response.json())

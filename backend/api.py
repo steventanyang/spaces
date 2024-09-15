@@ -3,14 +3,20 @@ from google.cloud import storage
 from typing import List, Tuple
 import uuid
 import os
-
+from fastapi.middleware.cors import CORSMiddleware
 from storage import GCPHandler, ChromaHandler
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Change this to specific domains in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Initialize the GCP and ChromaDB handlers
 gcp_handler = GCPHandler()
-chroma_handler = ChromaHandler()
+
 
 # Google Cloud Storage bucket name
 BUCKET_NAME = 'video-storage-12345678'
@@ -62,6 +68,7 @@ async def upload_video(file: UploadFile, x: float, y: float, floor: int):
     video_embedding = gcp_handler.get_embedding_from_video(internal_url)
 
     # Save the embedding to ChromaDB (using blob_name as ID)
+    chroma_handler = ChromaHandler()
     chroma_handler.upsert_embedding_to_db(
         embeddings=[video_embedding],
         ids=[public_url],
@@ -88,6 +95,7 @@ async def upload_image(file: UploadFile, x: float, y: float, floor: int):
     image_embedding = gcp_handler.get_embedding_from_image(internal_url)
 
     # Save the embedding to ChromaDB (using blob_name as ID)
+    chroma_handler = ChromaHandler()
     chroma_handler.upsert_embedding_to_db(
         embeddings=[image_embedding],
         ids=[public_url],
@@ -109,6 +117,7 @@ async def search_from_query(query_input: str, x: float, y: float, floor: int, n_
 
 
     # Find closest embeddings in the database
+    chroma_handler = ChromaHandler()
     closest_documents = chroma_handler.find_closest_embedding(query_embedding, n_results)
 
     return {"closest_embeddings": closest_documents}
@@ -118,4 +127,6 @@ async def get_all_images():
     """
     Endpoint to get all images in the database.
     """
+    chroma_handler = ChromaHandler()
+    print(chroma_handler.query_all())
     return chroma_handler.query_all()

@@ -73,7 +73,7 @@ class ChromaHandler:
         return results  # return the documents associated with closest embeddings
     def query_all(self):
         return self.db.get(
-            include=["documents"]
+            include=["metadatas"]
         )
 # Example usage:
 if __name__ == "__main__":
