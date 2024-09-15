@@ -2,3 +2,8 @@ backend/google-cloud-sdk/*
 backend/env/*
 backend/env
 backend/google-cloud-sdk
+env/*
+env
+*.pyc
+backend/db
+backend/db/*
