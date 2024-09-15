@@ -43,28 +43,18 @@ const IconWrapper = styled.div`
   pointer-events: none; /* Allow clicks to pass through the icon */
 `;
 
-const SearchButton = styled.button`
-  margin-left: 10px;
-  padding: 12px 20px;
-  border-radius: 50px;
-  border: none;
-  background-color: #333; /* Dark button color */
-  color: #fff; /* White text for contrast */
-  font-size: 16px;
-  cursor: pointer;
-  outline: none;
-  box-shadow: 0px 1px 6px rgba(32, 33, 36, 0.28);
-
-  &:hover {
-    background-color: #555; /* Slightly lighter on hover */
-  }
-`;
-
 const GoogleSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (e: any) => {
     setSearchTerm(e.target.value);
+  };
+
+  // Handle search when Enter key is pressed
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   const handleSearch = () => {
@@ -83,9 +73,9 @@ const GoogleSearch = () => {
           placeholder="Search For Spaces"
           value={searchTerm}
           onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
         />
       </SearchBoxWrapper>
-      <SearchButton onClick={handleSearch}>Search</SearchButton>
     </SearchContainer>
   );
 };
