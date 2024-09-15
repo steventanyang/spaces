@@ -234,12 +234,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@capacitor-community/video-recorder@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@capacitor-community/video-recorder@npm:5.0.1"
+  peerDependencies:
+    "@capacitor/core": ^5.0.0
+  checksum: e42140d365e32e4da1f517b32d09e9092e926a55f18a5290f82c4b64b479db9b5df0f40e270f5dcb1a44b02f2a2ff6c7ad9eab5b5acb16b99e91cb9d3fad6912
+  languageName: node
+  linkType: hard
+
 "@capacitor/android@npm:^6.1.2":
   version: 6.1.2
   resolution: "@capacitor/android@npm:6.1.2"
   peerDependencies:
     "@capacitor/core": ^6.1.0
   checksum: 5738cd4777a992b09a2d791c0e90f3933e27cf22a0c5793ac60d34ba4541585c22d602f9252340b2df02eb4a004ec0d4043d1cb86a51825b18169109a27ca984
+  languageName: node
+  linkType: hard
+
+"@capacitor/camera@npm:^6.0.2":
+  version: 6.0.2
+  resolution: "@capacitor/camera@npm:6.0.2"
+  peerDependencies:
+    "@capacitor/core": ^6.0.0
+  checksum: 2cc82d3132c8c47698efaab7f457352600277b3e02a33bf9d02213a894a87b13991751d86a91c558335d5dadce28dd8711cd605b5e6405f804b42b4ddd02f3d4
   languageName: node
   linkType: hard
 
@@ -278,6 +296,15 @@ __metadata:
   dependencies:
     tslib: ^2.1.0
   checksum: 51e5f575c4d96290902c6421fd6c4493e4e865cc95cfd1a207bf80956945cc06e724beb3fc9bfb21f44b0a3559c6a0064137b9dcf2b03b2550bb496c7043dc4e
+  languageName: node
+  linkType: hard
+
+"@capacitor/filesystem@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@capacitor/filesystem@npm:6.0.1"
+  peerDependencies:
+    "@capacitor/core": ^6.0.0
+  checksum: 92e4caa6c66c35a244585002318a6945927bfe6894b4b1b36e16363001301698dba39cfd2e5148807c65b60f9334d69c155b2b48a33ef5edf843c41cf23d509a
   languageName: node
   linkType: hard
 
@@ -2024,9 +2051,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:."
   dependencies:
+    "@capacitor-community/video-recorder": ^5.0.1
     "@capacitor/android": ^6.1.2
+    "@capacitor/camera": ^6.0.2
     "@capacitor/cli": ^6.1.2
     "@capacitor/core": ^6.1.2
+    "@capacitor/filesystem": ^6.0.1
     "@capacitor/ios": ^6.1.2
     "@eslint/js": ^9.9.0
     "@fortawesome/fontawesome-svg-core": ^6.6.0
