@@ -1,31 +1,42 @@
 import React, { useMemo } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { TGetVenueOptions, Mappedin, getVenue } from "@mappedin/mappedin-js";
-import useMapView from "./components/useMapView";
-import useVenue from "./components/useVenue";
+import Map, { Mappedin } from "./components/mappedin-react";
 import { SignIn, SignInButton, SignedIn, SignedOut } from "@clerk/clerk-react";
+import Visualization from "./visualization";
+import Customization from "./customization";
 
 function App() {
-  const options = useMemo<TGetVenueOptions>(
-    () => ({
-      venue: "mappedin-demo-mall",
-      clientId: "5eab30aa91b055001a68e996",
-      clientSecret: "RJyRXKcryCMy4erZqqCbuB1NbR66QTGNXVE0x3Pg6oCIlUR1"
-    }),
-    []
-  );
-
-  const venue = useVenue(options);
-  const { elementRef, mapView } = useMapView(venue);
+  const options = {
+      key: "mik_Qar1NBX1qFjtljLDI52a60753",
+      mapId: "66ce20fdf42a3e000b1b0545",
+      secret: "mis_CXFS9WnkQkzQmy9GCt4ucn2D68zNRgVa2aiJj5hEIFM8aa40fee",
+  };
 
   return (
     <div id="app" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
       <SignedIn>
-        <div ref={elementRef} style={{ width: "100%", height: "100%" }} />
+        <div id="mappedin-div">
+          <Mappedin
+            mapKey={options.key}
+            mapSecret={options.secret}
+            mapId={options.mapId}
+          >
+            <Map />
+            {/* <Customization /> */}
+            {/* <Visualization /> */}
+          </Mappedin>
+
+          <div id="demo-descriptions-container">
+            <h1>Where are customers searching for coffee?</h1>
+          </div>
+        </div>
       </SignedIn>
       <SignedOut>
-        <SignIn />
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <h2>Please sign in to access the application</h2>
+          <SignIn />
+        </div>
       </SignedOut>
     </div>
   );
