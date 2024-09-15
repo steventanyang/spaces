@@ -113,3 +113,9 @@ async def search_from_query(query_input: str, x: float, y: float, floor: int, n_
 
     return {"closest_embeddings": closest_documents}
 
+@app.post("/get_all_images/")
+async def get_all_images():
+    """
+    Endpoint to get all images in the database.
+    """
+    return chroma_handler.query_all()
