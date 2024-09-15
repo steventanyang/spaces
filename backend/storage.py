@@ -27,7 +27,7 @@ class GCPHandler:
         embeddings = self.model.get_embeddings(
             video=Video.load_from_file(blob_name),
         )
-        return embeddings.video_embedding
+        return embeddings.video_embeddings[0].embedding
 
     def get_embedding_from_text(self, string: str):
         """Extracts embeddings from a text string."""
@@ -43,14 +43,14 @@ class ChromaHandler:
         self.client = chromadb.PersistentClient("db")
         self.db = self.client.get_or_create_collection(name="embeddings")
     
-    def upsert_embedding_to_db(self, embeddings: List[List[float]], documents: List[str], ids: List[str]) -> None:
+    def upsert_embedding_to_db(self, embeddings: List[List[float]], metadatas: List[str], ids: List[str]) -> None:
         """Upserts embeddings into the ChromaDB collection."""
-        if len(embeddings) != len(documents) or len(embeddings) != len(ids):
+        if len(embeddings) != len(metadatas) or len(embeddings) != len(ids):
             raise ValueError("Length of embeddings, documents, and ids must be the same")
         
         self.db.upsert(
             embeddings=embeddings,
-            documents=documents,
+            metadatas=metadatas,
             ids=ids
         )
 
@@ -60,7 +60,7 @@ class ChromaHandler:
             query_embeddings=[query_embedding],
             n_results=n_results
         )
-        return results['documents']  # return the documents associated with closest embeddings
+        return results  # return the documents associated with closest embeddings
 
 
 # Example usage:
