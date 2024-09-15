@@ -1,3 +1,17 @@
+import {
+  MappedinLocation,
+  MappedinCoordinate,
+  TGetVenueOptions,
+} from "@mappedin/mappedin-js";
+import "@mappedin/mappedin-js/lib/mappedin.css";
+import { useContext, useEffect, useMemo, useState } from "react";
+import useMapView from "./components/useMapView";
+import useSelectedLocation from "./components/useSelectedLocation";
+import useVenue from "./components/useVenue";
+import styled from "styled-components";
+import { CgProfile } from "react-icons/cg";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { GlobalContext } from "./GlobalContext";
 // import { TGetVenueOptions } from "@mappedin/mappedin-js";
 // import { useMemo, useState } from "react";
 // import styled from "styled-components";
@@ -9,37 +23,50 @@
 // import { CgProfile } from "react-icons/cg";
 // import { FaMapMarkerAlt } from "react-icons/fa";
 
+const Main = styled.div`
+  height: 100vh;
+  width: 100vw;
+`;
+
+const Map = styled.div`
+  height: 100vh;
+  width: 100vw;
+`;
 // const Main = styled.div`
 //   height: 100vh;
 //   width: 100vw;
 // `;
 
-// const BottomNavbar = styled.div`
-//   position: fixed;
-//   left: 0;
-//   bottom: 0;
-//   width: 100%;
-//   height: 100px;
-//   background-color: #323437;
-//   color: white;
-//   text-align: center;
-//   justify-content: center;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-// `;
+const BottomNavbar = styled.div`
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #323437;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
-// const Text = styled.div`
-//   padding: 20px;
-//   background-color: #000;
-//   height: 20px;
-//   width: 20px;
-// `;
+const Text = styled.div`
+  padding: 20px;
+  background-color: #000;
+  height: 20px;
+  width: 20px;
+`;
 
-// const Icon = styled.div`
-//   padding: 20px;
-// `;
+const Icon = styled.div`
+  padding: 20px;
+`;
 
+const enum Screen {
+  MAP = "map",
+  PROFILE = "profile",
+}
 // const enum Screen {
 //   MAP = "map",
 //   PROFILE = "profile",
@@ -168,3 +195,30 @@ export default function App() {
     </Main>
   );
 }
+
+// import React from "react";
+// import { MapView, useMapData } from "@mappedin/react-sdk";
+// import "@mappedin/react-sdk/lib/esm/index.css";
+
+// export default function App() {
+//   const { mapData, isLoading, error } = useMapData({
+//     key: "mik_Qar1NBX1qFjtljLDI52a60753",
+//     secret: "mis_CXFS9WnkQkzQmy9GCt4ucn2D68zNRgVa2aiJj5hEIFM8aa40fee",
+//     mapId: "66ce20fdf42a3e000b1b0545",
+//   });
+
+//   if (isLoading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   if (error) {
+//     return <div>{error.message}</div>;
+//   }
+
+//   return mapData ? (
+//     <MapView
+//       mapData={mapData}
+//       style={{ width: "650px", height: "650px" }}
+//     ></MapView>
+//   ) : null;
+// }
