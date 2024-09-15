@@ -1,15 +1,34 @@
 import { MapView, useMapData, useMap, Label } from "@mappedin/react-sdk";
 import "@mappedin/react-sdk/lib/esm/index.css";
+import GoogleSearch from "./components/Search";
+import styled from "styled-components";
+import FloorSelector from "./components/FloorSelector";
+
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+const SearchContainer = styled.div`
+  position: absolute;
+  width: 80%;
+  top: -40%;
+  padding-horizontal: 30px;
+  z-index: 1000;
+`;
 
 function MyCustomComponent() {
   const { mapData } = useMap();
 
   return mapData.getByType("space").map((space) => {
-    return <Label target={space.center} text={space.name} />;
+    return <Label key={space.id} target={space.center} text={space.name} />;
   });
 }
 
 export default function App() {
+
   // See Demo API key Terms and Conditions
   // https://developer.mappedin.com/v6/demo-keys-and-maps/
   const { isLoading, error, mapData } = useMapData({
@@ -25,16 +44,18 @@ export default function App() {
   if (error) {
     return <div>{error.message}</div>;
   }
+  
 
-  return (
-
-
-      mapData ? (
+  return mapData ? (
+    <Main>
+      <SearchContainer>
+        <GoogleSearch />
+      </SearchContainer>
+        
       <MapView mapData={mapData}>
         <MyCustomComponent />
+        <FloorSelector />
       </MapView>
-    ) : null
-
-
-  );
+    </Main>
+  ) : null;
 }
