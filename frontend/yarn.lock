@@ -1008,6 +1008,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@teamhive/capacitor-video-recorder@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@teamhive/capacitor-video-recorder@npm:5.0.0"
+  peerDependencies:
+    "@capacitor/core": ^3.0.0
+  checksum: e58888bf86ee3ffca81b821982368f4866b778290f47f0106e846b1a00fe1b08b495aa89fbbb55a2d671798b345769012a262f09837bc00bde4e5046de676b10
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.20.5":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
@@ -2063,6 +2072,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.6.0
     "@fortawesome/react-fontawesome": ^0.2.2
     "@mappedin/react-sdk": beta
+    "@teamhive/capacitor-video-recorder": ^5.0.0
     "@types/react": ^18.3.3
     "@types/react-dom": ^18.3.0
     "@vitejs/plugin-react": ^4.3.1

@@ -8,6 +8,8 @@ PODS:
   - CapacitorCordova (6.1.2)
   - CapacitorFilesystem (6.0.1):
     - Capacitor
+  - TeamhiveCapacitorVideoRecorder (5.0.0):
+    - Capacitor
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - "CapacitorCommunityVideoRecorder (from `../../node_modules/@capacitor-community/video-recorder`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
+  - "TeamhiveCapacitorVideoRecorder (from `../../node_modules/@teamhive/capacitor-video-recorder`)"
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -27,6 +30,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorFilesystem:
     :path: "../../node_modules/@capacitor/filesystem"
+  TeamhiveCapacitorVideoRecorder:
+    :path: "../../node_modules/@teamhive/capacitor-video-recorder"
 
 SPEC CHECKSUMS:
   Capacitor: 679f9673fdf30597493a6362a5d5bf233d46abc2
@@ -34,7 +39,8 @@ SPEC CHECKSUMS:
   CapacitorCommunityVideoRecorder: 705cc03fa39008cb18c63c28531fbe15b2381180
   CapacitorCordova: f48c89f96c319101cd2f0ce8a2b7449b5fb8b3dd
   CapacitorFilesystem: 37fb3aa5c945b4539ab11c74a5c57925a302bf24
+  TeamhiveCapacitorVideoRecorder: 8839855c2322db3170d3f10d10f2f89b64660da4
 
-PODFILE CHECKSUM: 62e449842f567d3b84a9e3364d810b344560352c
+PODFILE CHECKSUM: 73442379c8bf4030b8a5df31ceea61922010eae6
 
 COCOAPODS: 1.15.2

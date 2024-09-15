@@ -14,6 +14,7 @@ def capacitor_pods
   pod 'CapacitorCommunityVideoRecorder', :path => '../../node_modules/@capacitor-community/video-recorder'
   pod 'CapacitorCamera', :path => '../../node_modules/@capacitor/camera'
   pod 'CapacitorFilesystem', :path => '../../node_modules/@capacitor/filesystem'
+  pod 'TeamhiveCapacitorVideoRecorder', :path => '../../node_modules/@teamhive/capacitor-video-recorder'
 end
 
 target 'App' do

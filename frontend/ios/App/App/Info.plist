@@ -10,6 +10,8 @@
 	<string>Allow access to the photo library to upload videos</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow access to the microphone to record videos</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allow access to the photo library to save videos</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
