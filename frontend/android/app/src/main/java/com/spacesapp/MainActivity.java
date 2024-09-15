@@ -1,0 +1,5 @@
+package com.spacesapp;
+
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {}

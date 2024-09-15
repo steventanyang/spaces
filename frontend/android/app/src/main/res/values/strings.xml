@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">spaces</string>
+    <string name="title_activity_main">spaces</string>
+    <string name="package_name">com.spacesapp</string>
+    <string name="custom_url_scheme">com.spacesapp</string>
+</resources>
