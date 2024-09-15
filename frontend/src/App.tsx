@@ -7,6 +7,7 @@ import { Camera, CameraResultType } from "@capacitor/camera";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import DrawNavigation from "./components/DrawNavigation";
+import { Geolocation } from '@capacitor/geolocation';
 // import axios from "axios";
 
 const Main = styled.div`
@@ -57,7 +58,13 @@ export default function App() {
   // See Demo API key Terms and Conditions
   // https://developer.mappedin.com/v6/demo-keys-and-maps/
 
+  const getCurrentPosition = async () => {
+    const coordinates = await Geolocation.getCurrentPosition();
+    return coordinates;
+  };
+
   const takePicture = async () => {
+    getCurrentPosition();
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
