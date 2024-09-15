@@ -6,9 +6,10 @@ import FloorSelector from "./components/FloorSelector";
 import { Camera, CameraResultType } from "@capacitor/camera";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import DrawNavigation from "./components/DrawNavigation";
-import { Geolocation } from '@capacitor/geolocation';
-// import axios from "axios";
+// import DrawNavigation from "./components/DrawNavigation";
+import { Geolocation } from "@capacitor/geolocation";
+import SnapStory from "./components/Images";
+import { useState } from "react";
 
 const Main = styled.div`
   display: flex;
@@ -46,6 +47,18 @@ const RecordButton = styled.button`
   font-size: 16px;
 `;
 
+const ImageCarouselContainer = styled.div`
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  justify-content: flex-end;
+`;
+
 function MyCustomComponent() {
   const { mapData } = useMap();
 
@@ -57,11 +70,27 @@ function MyCustomComponent() {
 export default function App() {
   // See Demo API key Terms and Conditions
   // https://developer.mappedin.com/v6/demo-keys-and-maps/
+  const [isStoryVisible, setIsStoryVisible] = useState(false);
+
+  const image1 = "https://picsum.photos/500/900";
+  const image2 = "https://picsum.photos/500/899";
+  const image3 = "https://picsum.photos/500/898";
+
+  const images = [image1, image2, image3];
+
+  const openStory = () => {
+    setIsStoryVisible(true);
+  };
+
+  const closeStory = () => {
+    setIsStoryVisible(false);
+  };
 
   const getCurrentPosition = async () => {
     const coordinates = await Geolocation.getCurrentPosition();
     return coordinates;
   };
+  console.log(getCurrentPosition);
 
   const takePicture = async () => {
     const image = await Camera.getPhoto({
@@ -102,7 +131,7 @@ export default function App() {
 
       <MapView mapData={mapData}>
         <MyCustomComponent />
-        <DrawNavigation />
+        {/* <DrawNavigation /> */}
         <FloorSelector />
       </MapView>
 
@@ -114,6 +143,15 @@ export default function App() {
           />
         </RecordButton>
       </ButtonContainer>
+
+      <ImageCarouselContainer>
+        <button onClick={openStory}>Open Snap Story</button>
+        <SnapStory
+          images={images}
+          visible={isStoryVisible}
+          onClose={closeStory}
+        />
+      </ImageCarouselContainer>
     </Main>
   ) : null;
 }
