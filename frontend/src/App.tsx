@@ -64,7 +64,6 @@ export default function App() {
   };
 
   const takePicture = async () => {
-    getCurrentPosition();
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
