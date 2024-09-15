@@ -70,6 +70,32 @@ async def upload_video(file: UploadFile, x: float, y: float, floor: int):
 
     return {"message": "Video uploaded successfully", "video_url": {public_url, internal_url}}
 
+@app.post("/upload_image/")
+async def upload_image(file: UploadFile, x: float, y: float, floor: int):
+    """Endpoint to upload an image to Google Cloud Storage."""
+    # Check if the uploaded file is in a valid image format
+    if file.content_type not in ["image/jpeg", "image/png", "image/gif", "image/webp"]:
+        raise HTTPException(status_code=400, detail="Invalid image format. Please upload jpeg, png, gif, or webp.")
+
+    # Generate a unique filename using uuid
+    blob_name = f"images/{uuid.uuid4()}_{file.filename}"
+
+    # Upload the image file to GCS
+    public_url = upload_to_gcs(file, blob_name)
+    internal_url = f"gs://{BUCKET_NAME}/{blob_name}"
+
+    # Get the embedding for the uploaded image
+    image_embedding = gcp_handler.get_embedding_from_image(internal_url)
+
+    # Save the embedding to ChromaDB (using blob_name as ID)
+    chroma_handler.upsert_embedding_to_db(
+        embeddings=[image_embedding],
+        ids=[public_url],
+        metadatas=[{"x": x, "y": y, "floor": floor}],
+    )
+
+    return {"message": "Image uploaded successfully", "image_url": {public_url, internal_url}}
+
 @app.post("/search_from_query/")
 async def search_from_query(query_input: str, x: float, y: float, floor: int, n_results: int = 6):
     """

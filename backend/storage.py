@@ -13,7 +13,7 @@ find_closest_embedding_from_embedding(embedding) -> [uris, metadata]
 from typing import List
 import vertexai
 import chromadb
-from vertexai.vision_models import MultiModalEmbeddingModel, Video
+from vertexai.vision_models import MultiModalEmbeddingModel, Video, Image
 from vertexai.vision_models import VideoSegmentConfig
 
 class GCPHandler:
@@ -36,6 +36,16 @@ class GCPHandler:
         )
         return embeddings.text_embedding
 
+    def get_embedding_from_image(self, blob_name: str):
+        """Extracts embeddings from an image file."""
+        # Load the image from the file using the appropriate method
+        image = Image.load_from_file(blob_name)
+        
+        # Get the embeddings from the image
+        embeddings = self.model.get_embeddings(image=image)
+        
+        # Return the first image embedding, assuming only one is extracted
+        return embeddings.image_embedding
 
 class ChromaHandler:
     def __init__(self) -> None:
