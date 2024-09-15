@@ -128,5 +128,5 @@ async def get_all_images():
     Endpoint to get all images in the database.
     """
     chroma_handler = ChromaHandler()
-    print(chroma_handler.query_all())
+    #print(chroma_handler.query_all())
     return chroma_handler.query_all()
